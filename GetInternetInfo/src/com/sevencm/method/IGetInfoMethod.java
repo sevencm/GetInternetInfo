@@ -7,4 +7,8 @@ public interface IGetInfoMethod {
 	public String getCharSetbyHeader(HttpURLConnection conn);
 	public String getCharSetbyMeta(String url);
 	public Set<String> getURL(String htmlString);
+	
+	public String getCompanyInfo(String htmlString);
+	
+	public String GetResponseDataByID(String url);
 }
