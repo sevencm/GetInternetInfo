@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GetInfoMethod implements IGetInfoMethod {
 
@@ -79,6 +81,14 @@ public class GetInfoMethod implements IGetInfoMethod {
 		}
 		
 		return strCharset;
+	}
+
+	@Override
+	public Set<String> getURL(String htmlString) {
+		// TODO Auto-generated method stub
+		Set<String> urlSet = new HashSet<String>();
+		int start = htmlString.indexOf("tabhead");
+		return null;
 	}
 	
 	

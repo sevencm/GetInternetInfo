@@ -87,13 +87,13 @@ public class Test {
 	public static void main(String[] args) {
 		Test getInfor = new Test();
 		String str = getInfor
-				.GetResponseDataByID("http://search.51job.com/list/co,c,308524,000000,10,1.html");
+				.GetResponseDataByID("http://search.51job.com/job/55100959,c.html");
 		
 		int start = str.indexOf("sr_bt");
 		int end = str.indexOf("每页显示");
 		
-		System.out.println(start);
-		System.out.println(end);
+//		System.out.println(start);
+//		System.out.println(end);
 		
 		String togetinfo = str.substring(start, end);
 		togetinfo = togetinfo.replace("&nbsp;", "");
@@ -106,25 +106,28 @@ public class Test {
 		System.out.println(Name);
 		int hangye = togetinfo.indexOf("公司行业");
 		int ren = togetinfo.indexOf("人");
-		String detail = togetinfo.substring(hangye,ren);
+		String detail = togetinfo.substring(hangye,ren+1);
+		detail = detail.replace("</strong>", "");
+		detail = detail.replace("<strong>", "\n");
+		detail = detail.replace("<br>", "");
 		System.out.println(detail);
 		
-		togetinfo = togetinfo.substring(togetinfo.indexOf("txt_font"),togetinfo.length());
-		
-		
-		int deatilmes = togetinfo.indexOf("txt_font");
-		int detailmes_ = togetinfo.indexOf("</div>");
-		String deam = togetinfo.substring(deatilmes,detailmes_);
-		
-		int deatil1 = deam.indexOf("br");
-		int deatil2 = deam.indexOf("/p");
-		String detailn = deam.substring(deatil1, deatil2);
-		System.out.println(detailn);
-		
-		int detail3 = deam.indexOf("");
-		
-		
-		System.out.println(deam);
+//		togetinfo = togetinfo.substring(togetinfo.indexOf("txt_font"),togetinfo.length());
+//		
+//		
+//		int deatilmes = togetinfo.indexOf("txt_font");
+//		int detailmes_ = togetinfo.indexOf("</div>");
+//		String deam = togetinfo.substring(deatilmes,detailmes_);
+//		
+//		int deatil1 = deam.indexOf("br");
+//		int deatil2 = deam.indexOf("/p");
+//		String detailn = deam.substring(deatil1, deatil2);
+//		System.out.println(detailn);
+//		
+//		int detail3 = deam.indexOf("txt_font1");
+//		String oth = deam.substring(detail3, deam.length());
+//		
+//		System.out.println(oth);
 		
 		
 //		syso
