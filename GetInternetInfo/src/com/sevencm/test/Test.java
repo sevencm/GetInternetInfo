@@ -7,6 +7,7 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
 import com.sevencm.method.GetInfoMethod;
 import com.sevencm.method.IGetInfoMethod;
 
@@ -22,9 +23,13 @@ public class Test {
 			// byte d[] = new byte[4];
 			con.setRequestProperty("User-Agent",
 					"Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-			char[] c = { 'u' };
+//			char[] c = { 'u' };
 			IGetInfoMethod getInfoMethod = new GetInfoMethod();
-			System.out.println(getInfoMethod.getCharSetbyHeader(con));
+			String st = getInfoMethod.getCharSetbyHeader(con);
+			if(st == null){
+				st = getInfoMethod.getCharSetbyMeta(url);
+			}
+//			System.out.println(st);
 			
 			//
 //			int size = con.getHeaderFields().size();
@@ -48,7 +53,7 @@ public class Test {
 			String line;
 			InputStream is = con.getInputStream();
 			StringBuffer stringBuffer = new StringBuffer();
-			Reader reader = new InputStreamReader(is);
+			Reader reader = new InputStreamReader(is,st);
 			BufferedReader bufferedReader = new BufferedReader(reader);
 			// while ((line = bufferedReader.readLine())!=null){
 			// int k = line.indexOf("charset");
@@ -81,8 +86,15 @@ public class Test {
 //http://t.qq.com/
 	public static void main(String[] args) {
 		Test getInfor = new Test();
+		String str = getInfor
+				.GetResponseDataByID("http://blog.csdn.net");
+		
+//		Pattern pattern = Pattern.compile("<.+?>", Pattern.DOTALL);
+//		Matcher matcher = pattern.matcher(str);
+//		String string = matcher.replaceAll("");
+//		System.out.println(string);
+//		
 		System.out
-				.println(getInfor
-						.GetResponseDataByID("http://blog.csdn.net"));
+				.println(str);
 	}
 }

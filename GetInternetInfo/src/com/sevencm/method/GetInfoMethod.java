@@ -1,6 +1,11 @@
 package com.sevencm.method;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class GetInfoMethod implements IGetInfoMethod {
 
@@ -21,11 +26,11 @@ public class GetInfoMethod implements IGetInfoMethod {
 			}
 		}
 
-		System.out
-				.println("****************************************************");
-		System.out.println(strBuffer.toString());
-		System.out
-				.println("****************************************************");
+//		System.out
+//				.println("****************************************************");
+//		System.out.println(strBuffer.toString());
+//		System.out
+//				.println("****************************************************");
 
 		if (str == null) {
 			return str;
@@ -36,5 +41,47 @@ public class GetInfoMethod implements IGetInfoMethod {
 					.substring(str.indexOf("charset") + 8, str.length());
 		}
 	}
+
+	@Override
+	public String getCharSetbyMeta(String url) {
+		String strCharset = null;
+		
+		try {
+			URL dataUrl = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) dataUrl
+					.openConnection();
+			con.setRequestProperty("User-Agent",
+					"Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+			InputStream is = con.getInputStream();
+			Reader reader = new InputStreamReader(is);
+			BufferedReader bufferedReader = new BufferedReader(reader);
+			String line = null;
+			
+			while ((line = bufferedReader.readLine()) != null) {
+						
+				line = line.replace('"', ' ');
+				line = line.replace('/', ' ');
+				line = line.replace('>', ' ');
+				line = line.replace('\'', ' ');
+				line = line.trim();
+				int intCharSetStart = line.indexOf("charset=");		
+				if (intCharSetStart != -1) {
+					strCharset = line.substring(intCharSetStart + 8, line.length()).trim();			 //indexOf("\"/>")	
+					break;
+				}
+			}
+			if(bufferedReader!=null){
+				bufferedReader.close();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return strCharset;
+	}
+	
+	
+	
 
 }

@@ -4,4 +4,5 @@ import java.net.HttpURLConnection;
 
 public interface IGetInfoMethod {
 	public String getCharSetbyHeader(HttpURLConnection conn);
+	public String getCharSetbyMeta(String url);
 }
