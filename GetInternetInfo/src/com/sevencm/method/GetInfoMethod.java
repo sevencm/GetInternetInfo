@@ -52,8 +52,7 @@ public class GetInfoMethod implements IGetInfoMethod {
 			URL dataUrl = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) dataUrl
 					.openConnection();
-			con.setRequestProperty("User-Agent",
-					"Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+			con.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 			InputStream is = con.getInputStream();
 			Reader reader = new InputStreamReader(is);
 			BufferedReader bufferedReader = new BufferedReader(reader);

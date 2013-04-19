@@ -24,9 +24,16 @@ public class Test {
 //			  System.out.println(urlHtml);
 //			  IGetInfoMethod getInfoMethod_ = new GetInfoMethod();
 			  String strGetI = getInfoMethod.GetResponseDataByID(urlHtml);
+			  
 //			  System.out.println(strGetI);
 			  System.out.println(getInfoMethod.getCompanyInfo(strGetI));
 			}
+		
+//		  String strGetI = getInfoMethod.GetResponseDataByID("http://jobs.zhaopin.com/416378228250008.htm");
+//		  System.out.println(strGetI);
+////		  System.out.println(strGetI);
+//		  System.out.println(getInfoMethod.getCompanyInfo(strGetI));
+		
 //		String strGetI = getInfoMethod.GetResponseDataByID("http://jobs.zhaopin.com/guangzhou/%e5%a4%a7%e5%ae%a2%e6%88%b7%e9%83%a8%e5%95%86%e5%8a%a1%e7%bb%8f%e7%90%86_493183727250091.htm");
 //		System.out.println(strGetI);
 //		================================================================================================		
